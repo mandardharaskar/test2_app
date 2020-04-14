@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% block head %}
+<title>product Master</title>
+{% endblock %} {% block body %}
+<div class="content">
+  <h1 style="text-align: center;">Products Master</h1>
+  {% if products|length < 1 %}
+  <h4 style="text-align: center;">There are no products. Add one below!</h4>
+  {% else %}
+  <table>
+    <tr>
+      <th>Product name</th>
+      <th>Product image</th>
+      <th>Product description</th>
+      <th>Product price</th>
+      <th>Added</th>
+      <th>Actions</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+      <td>{{ product.name }}</td>
+      <td>
+        <img
+          width="100px"
+          src="{{product.image}}"
+          alt="{{product.name}}"
+          srcset=""
+        />
+      </td>
+      <td>{{ product.desc }}</td>
+      <td>₹ {{ product.price }}</td>
+
+      <td>{{ product.date_created.date() }}</td>
+      <td>
+        <a href="/delete/{{product.id}}">Delete</a>
+        <br />
+        <a href="/update/{{product.id}}">Update</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+  <div>
+    <form action="/index" method="POST">
+      <label for="name">Product name:</label><br />
+      <input type="text" name="name" id="name" /><br />
+      <label for="image">Product Image:</label><br />
+      <input type="text" name="image" id="image" /><br />
+      <label for="desc">Product description:</label><br />
+      <textarea type="text" name="desc" id="desc"></textarea><br />
+      <label for="price">Product price:</label><br />
+      <input type="text" name="price" id="price" /><br /><br />
+
+      <input type="submit" value="Add product" />
+    </form>
+  </div>
+</div>
+{% endblock %}

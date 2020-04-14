@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block head %}
+<title>Products Master</title>
+{% endblock %} {% block body %}
+<div class="content">
+  <h1 style="text-align: center;">Update Product</h1>
+
+  <div class="form">
+    <form action="/update/{{product.id}}" method="POST">
+      <label for="name">Product name:</label><br />
+      <input type="text" name="name" id="name" value="{{product.name}}" /><br />
+      <label for="image">Product Image:</label><br />
+      <input
+        type="text"
+        name="image"
+        id="image"
+        value="{{product.image}}"
+      /><br />
+      <label for="desc">Product description:</label><br />
+      <textarea type="text" name="desc" id="desc">{{product.desc}}</textarea
+      ><br />
+      <label for="price">Product price:</label><br />
+      <input
+        type="text"
+        name="price"
+        id="price"
+        value="{{product.price}}"
+      /><br /><br />
+      <input type="submit" value="Update" />
+    </form>
+  </div>
+</div>
+{% endblock %}
